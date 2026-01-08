@@ -11,7 +11,7 @@ const User = dbConnection.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    fullName: {
+    full_name: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
@@ -22,8 +22,9 @@ const User = dbConnection.define(
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      unique: true,
       validate: {
-        isEmail: true,
+        isEmail: true
       },
     },
   },
@@ -33,6 +34,12 @@ const User = dbConnection.define(
       beforeCreate: (user: any, options: CreateOptions): void => {
         const salt = genSaltSync(10);
         user.password = hashSync(user.password, salt);
+      },
+      beforeUpdate: (user: any, options: CreateOptions): void => {
+        if (user.changed("password")) {
+          const salt = genSaltSync(10);
+          user.password = hashSync(user.password, salt);
+        }
       },
     },
   }

@@ -19,7 +19,7 @@ const Post = dbConnection.define(
       allowNull: false,
     },
     photo: DataTypes.STRING,
-    author_id: {
+    author: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

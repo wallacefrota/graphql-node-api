@@ -14,11 +14,11 @@ const Comment = dbConnection.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    post_id: {
+    post: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    author_id: {
+    author: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
